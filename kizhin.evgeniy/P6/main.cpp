@@ -5,7 +5,8 @@
 int main()
 {
   char* inputString = kizhin::readString(std::cin);
-  if (!inputString) {
+  if (!inputString || *inputString == '\0') {
+    free(inputString);
     std::cerr << "Failed to input string\n";
     return 1;
   }

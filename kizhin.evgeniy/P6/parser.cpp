@@ -39,23 +39,14 @@ bool parseExpression()
 bool parseTerm()
 {
   using kizhin::detail::TokenType;
-  if (currentTokenType == TokenType::OPEN_PARENTHESIS) {
-    nextToken();
-    if (!parseFactor() || currentTokenType != TokenType::MULTIPLY_DIVIDE) {
-      return false;
-    }
-    nextToken();
-    if (!parseTerm() || currentTokenType != TokenType::CLOSE_PARENTHESIS) {
-      return false;
-    }
-    nextToken();
-    return true;
+  if (!parseFactor()) {
+    return false;
   }
-  if (parseFactor() && currentTokenType != TokenType::MULTIPLY_DIVIDE) {
-    return true;
+  if (currentTokenType == TokenType::MULTIPLY_DIVIDE) {
+    nextToken();
+    return parseTerm();
   }
-  nextToken();
-  return parseTerm();
+  return true;
 }
 
 bool parseFactor()
