@@ -51,7 +51,11 @@ bool parseTerm()
     nextToken();
     return true;
   }
-  return parseFactor();
+  if (parseFactor() && currentTokenType != TokenType::MULTIPLY_DIVIDE) {
+    return true;
+  }
+  nextToken();
+  return parseTerm();
 }
 
 bool parseFactor()
