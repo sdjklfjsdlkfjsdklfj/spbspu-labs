@@ -1,8 +1,8 @@
 #include "string_managment.hpp"
 #include <stdexcept>
 
-static const char* parsingString = nullptr;
-static const char* position_ = nullptr;
+const char* parsingString = nullptr;
+const char* position_ = nullptr;
 
 void kizhin::detail::setString(const char* string)
 {

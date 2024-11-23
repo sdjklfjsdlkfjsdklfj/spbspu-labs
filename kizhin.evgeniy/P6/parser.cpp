@@ -2,7 +2,7 @@
 #include "lexer.hpp"
 #include "string_managment.hpp"
 
-static kizhin::detail::TokenType currentTokenType;
+kizhin::detail::TokenType currentTokenType;
 
 bool parseExpression();
 bool parseTerm();
